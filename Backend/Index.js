@@ -1,7 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-const mysql = require('mysql2');
+
 
 
 const app = express();
@@ -28,20 +28,7 @@ app.post('/api/students', (req, res) => {
   const studentData = req.body;
   console.log('Received data:', studentData);
   
-  const query = 'INSERT INTO student (fullName, email, age, gender) VALUES (?, ?, ?, ?)';
-  connection.query(
-    query,
-    [studentData.fullName, studentData.email, studentData.age, studentData.gender],
-    (err, result) => {
-      if (err) {
-        console.error('Error inserting data into the database:', err);
-        res.status(500).json({ message: 'Error inserting data into the database' });
-      } else {
-        console.log('Data inserted successfully!');
-        res.status(200).json({ message: 'Student data received and inserted successfully!' });
-      }
-    }
-  );
+  
 
 });
 
